@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <title>Math Rain</title>
+    <style>
+    .rectangle{
+        /*display:inline-block;
+        margin:0 5px;
+        background-color:red;*/
+        position:absolute;
+        /*top:50px;
+        left:30px;
+        height:50px;
+        width:50px;*/
+        /*border:2px solid white;*/
+border-radius:50%;
+background-image:url("Images/image1.jpg");
+    background-size:cover;
+    }
+    .container{
+        width:500px;
+        height:500px;
+        position:relative;
+        border:2px solid black;
+    }
+
+    </style>
+    </head>
+<body>
+    <div class="container" ></div>
+    <div class="rectangle"></div>
+<script>
+window.onload=function(){
+    class Ball{
+        constructor(positionX,positionY,width,height){
+            this.top=positionY;
+            this.left=positionX;
+            this.falling=true;
+            this.width=width;
+            this.height=height;
+            this.angle=0;
+        }
+        toggleState(){
+            this.falling=!this.falling;
+        }
+        move(){
+            let step=5;
+            let direction=(this.falling)?1:-1;
+            this.top+=direction*step;
+        }
+        update(){
+            this.element.style.top=this.top+"px";
+            this.element.style.transform=`rotate(${this.angle}deg)`;
+        }
+        render(parent){
+            this.element=document.createElement("div");
+            this.element.classList.add("rectangle");
+            this.element.style.top=this.top+"px";
+             this.element.style.left=this.left+"px";
+             this.element.style.width=this.width+"px";
+              this.element.style.height=this.height+"px";
+            parent.appendChild(this.element);
+
+        }
+    }
+   
+   
+    let ball=new Ball(0,0,50,50);
+    let ball1=new Ball(60,60,50,50);
+    let ball2=new Ball(120,120,50,50);
+    //let rectangle=document.querySelector(".rectangle")
+let container=document.querySelector(".container");
+ball.render(container);
+ball1.render(container);
+ball2.render(container);
+ //console.log(typeof style.top);
+    setInterval(function(){
+        if(ball.top>450 || ball.top<0)
+        ball.toggleState();
+        ball.move();
+        ball.update();},5);
+        setInterval(function(){
+        if(ball1.top>450 || ball1.top<0) //&& ball.top==200)
+        ball1.toggleState();
+        ball1.move();
+        ball1.update();},5);
+        setInterval(function(){
+        if(ball2.top>450 || ball2.top<0) //&& ball1.top==450)
+        ball2.toggleState();
+        ball2.move();
+        ball2.update();},5);
+  //  let top=window.getComputedStyle(rectangle,null).top;
+    
+  //  let newTop=parseInt(top)+5;
+    //rectangle.style.top=newTop+"px";
+    //},500);
+
+}
+</script>
+</body>
+</html>

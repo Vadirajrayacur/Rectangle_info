@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <title>Math Rain</title>
+    <style>
+    .rectangle{
+        
+        position:absolute;
+        border-radius:50%;
+        background-image:url("Images/image1.jpg");
+        background-size:cover;
+    }
+    .container{
+        width:500px;
+        height:500px;
+        position:relative;
+        border:2px solid black;
+    }
+
+    </style>
+    </head>
+<body>
+    <div class="container" ></div>
+    <div class="rectangle"></div>
+<script>
+window.onload=function(){
+    class Ball{
+        constructor(positionX,positionY,width,height){
+            this.top=positionY;
+            this.left=positionX;
+            this.falling=true;
+            this.width=width;
+            this.height=height;
+            this.angle=0;
+        }
+        toggleState(){
+            this.falling=!this.falling;
+        }
+        move(){
+            let step=5;
+            let direction=(this.falling)?1:-1;
+            this.top+=direction*step;
+        }
+        update(){
+            this.element.style.top=this.top+"px";
+            this.element.style.transform=`rotate(${this.angle}deg)`;
+        }
+        render(parent){
+            this.element=document.createElement("div");
+            this.element.classList.add("rectangle");
+            this.element.style.top=this.top+"px";
+             this.element.style.left=this.left+"px";
+             this.element.style.width=this.width+"px";
+              this.element.style.height=this.height+"px";
+            parent.appendChild(this.element);
+
+        }
+    }
+
+    let balls=[new Ball(0,0,50,50),new Ball(60,60,50,50),new Ball(120,120,50,50)];
+    let container=document.querySelector(".container");
+    balls.forEach(ball=>ball.render(container));
+    setInterval(function(){
+        balls.forEach(ball=>{
+        if(ball.top>450 || ball.top<0)
+        ball.toggleState();
+        ball.move();
+        ball.update();
+        });
+    },50);
+}
+</script>
+</body>
+</html>
