@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Boxes</title>
+    <style>
+        /*.box{
+            background-color: rgba(15, 64, 121, 0.418);
+        }*/
+    div.box{
+      /*  padding:.05%;
+        display: inline-table;
+       text-align: center;*/
+       background-color:rgb(184, 56, 39);
+        width:100px;
+    height:100px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    }
+    div.container{
+        height: 500px;
+        display:flex;
+        /*flex-direction:row;*/
+        flex-wrap: wrap;
+       /* justify-content: space-between;*/
+        justify-content:space-evenly;
+        align-items:center;
+        /*text-align: center;
+        line-height: 6;*/
+    }
+    div.three{
+         align-self:flex-start;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box one">1</div>
+        <div class="box two">2</div>
+        <div class="box three ">3</div>
+        <div class="box four">4</div>
+        <div class="box five">5</div>
+        <div class="box one">1</div>
+        <div class="box two">2</div>
+        <div class="box three">3</div>
+        <div class="box four">4</div>
+        <div class="box five">5</div>
+    </div>
+</body>
+</html>
